@@ -1,11 +1,14 @@
 ;;;; Emacs Config File
 
-;; Features to add:
+;; To Do List:
 ;; yasnippet - template system that allows to type an abbreviation and get a function template
 ;; jedi - python auto completion that doesnt seem to be initialized here but is installed
 ;; elpy - requires flake8 and importmagic, neither of which are installed. Check this
 ;; Setup C/C++
 ;; magit
+;; emacs internet browser
+;; learn org mode
+;; try to get rid of sublimity (slows startup)
 
 ;; Prevent annoying \"Active processes exist\" query when you quit Emacs.
 (add-hook 'shell-mode-hook
