@@ -7,11 +7,10 @@
 ;; Setup C/C++
 
 
+;; Required to get git to accept https
 ;; Add git bin to load path
 (add-to-list 'load-path "C:\Program Files (x86)\Git\bin")
 (setenv "GIT_ASKPASS" "git-gui--askpass")
-
-;; Added content
 
 
 (setq display-time-day-and-date t
