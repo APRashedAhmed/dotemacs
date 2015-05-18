@@ -4,6 +4,8 @@
 ;; yasnippet - template system that allows to type an abbreviation and get a function template
 ;; jedi - python auto completion that doesnt seem to be initialized here but is installed
 ;; elpy - requires flake8 and importmagic, neither of which are installed. Check this
+;; powershell - get it working
+;; Setup C/C++
 
 
 
@@ -62,11 +64,6 @@
 
 ;loads the .emacs file on startup
 (find-file "C:\\Users\\Abdullah\\AppData\\Roaming\\.emacs")
-
-;Sets Neotree to be toggles using f8
-(add-to-list 'load-path "C:\\Users\\Abdullah\\AppData\\Roaming\\.emacs.d\\elpa\\neotree-20150102.427\\neotree.elc")
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
 
 ; switch to the interpreter after executing code
 (setq py-shell-switch-buffers-on-execute-p t)
