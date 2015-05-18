@@ -11,6 +11,8 @@
 (add-to-list 'load-path "C:\Program Files (x86)\Git\bin")
 (setenv "GIT_ASKPASS" "git-gui--askpass")
 
+;; Added content
+
 
 (setq display-time-day-and-date t
                 display-time-12hr-format t)
