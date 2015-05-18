@@ -8,8 +8,10 @@
 ;; Setup C/C++
 
 
-(setenv "GIT_ASKPASS" "git-gui--askpass")
+;; Add git bin to load path
+(add-to-list 'load-path "C:\Program Files (x86)\Git\bin")
 
+(setenv "GIT_ASKPASS" "git-gui--askpass")
 
 
 (setq display-time-day-and-date t
