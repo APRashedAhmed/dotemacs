@@ -5,7 +5,7 @@
 ;; jedi - python auto completion that doesnt seem to be initialized here but is installed
 ;; elpy - requires flake8 and importmagic, neither of which are installed. Check this
 ;; Setup C/C++
-
+;; magit
 
 ;; Required to get git to accept https
 ;; Add git bin to load path
