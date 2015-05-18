@@ -64,14 +64,11 @@
 (setq py-shell-switch-buffers-on-execute-p t)
 (setq py-switch-buffers-on-execute-p t)
 
-
 ;Shortens Yes and No to y and n
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-
 ;;No backup files
 (setq make-backup-files nil)
-
 
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.3.1")
 (require 'auto-complete)
@@ -80,13 +77,6 @@
 (ac-config-default)
 (global-auto-complete-mode t)
 
-
-
-;; (add-to-list 'load-path "~/.emacs.d/fill-column-indicator-1.83")
-;; (require 'fill-column-indicator)
-;; (define-globalized-minor-mode
-;;  global-fci-mode fci-mode (lambda () (fci-mode 1)))
-;; (global-fci-mode t)
 
 ;; smex code
 
@@ -273,57 +263,6 @@
 (set-default-font "Consolas-12")
 
 (scroll-bar-mode -1)
-
-;; MatLab-Mode
-(autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
-(add-to-list
- 'auto-mode-alist
- '("\\.m$" . matlab-mode))
-(setq matlab-indent-function t)
-(setq matlab-shell-command "matlab")
-
-
-;; Setting up matlab-mode
-(add-to-list 'load-path "~/.emacs.d/personal/matlab-emacs")
-(load-library "matlab-load")
-(custom-set-variables
- '(matlab-shell-command-switches '("-nodesktop -nosplash")))
-(add-hook 'matlab-mode-hook 'auto-complete-mode)
-(setq auto-mode-alist
-    (cons
-     '("\\.m$" . matlab-mode)
-     auto-mode-alist))
-
-(setq matlab-shell-command "PATH/TO/matlabshell.bat")
- (setq matlab-shell-command-switches "")
- (setq matlab-shell-echoes nil)
-
-(setq matlab-shell-command "c:/Programs/matlabshell/matlabshell.cmd")
-(setq matlab-shell-command-switches '())
-(setq matlab-shell-echoes nil)
-
-;; Open .js files in js mode
-(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
-
-;; js2 mode is a better js mode for emacs (better syntax
-;; highlighting and supports newer js extensions
-
-(add-hook 'js-mode-hook 'js2-minor-mode)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-
-;; Syntax highlighting levels:* 0 or a negative value means none.
-;; * 1 adds basic syntax highlighting. * 2 adds highlighting of some
-;; Ecma built-in properties. * 3 adds highlighting of many Ecma
-;; built-in functions.
-(setq js2-highlight-level 3)
-
-
-;; Enables paredit
-(add-to-list 'load-path "C:\\Users\\Abdullah\\AppData\\Roaming\\.emacs.d\\elpa\\neotree-20150102.427\\cparedit-everywhere-20140906.210")
-(require 'paredit-everywhere)
-
-;; Enables paredit in python mode
-(add-hook 'python-mode-hook 'paredit-everywhere-mode)
 
 (defun my-clear ()
   (interactive)
