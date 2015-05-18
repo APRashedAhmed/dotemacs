@@ -8,8 +8,11 @@
 ;; magit
 
 ;; Prevent annoying \"Active processes exist\" query when you quit Emacs.
-(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-  (flet ((process-list ())) ad-do-it))
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (set-process-query-on-exit-flag (get-buffer-process
+                                             (current-buffer))
+                                            nil)))
 
 ;; Required to get git to accept https
 ;; Add git bin to load path
