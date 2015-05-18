@@ -7,6 +7,10 @@
 ;; Setup C/C++
 ;; magit
 
+;; Prevent annoying \"Active processes exist\" query when you quit Emacs.
+(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+  (flet ((process-list ())) ad-do-it))
+
 ;; Required to get git to accept https
 ;; Add git bin to load path
 (add-to-list 'load-path "C:\Program Files (x86)\Git\bin")
