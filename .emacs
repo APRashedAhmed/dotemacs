@@ -4,7 +4,6 @@
 ;; yasnippet - template system that allows to type an abbreviation and get a function template
 ;; jedi - python auto completion that doesnt seem to be initialized here but is installed
 ;; elpy - requires flake8 and importmagic, neither of which are installed. Check this
-;; powershell - get it working
 ;; Setup C/C++
 
 
