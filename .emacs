@@ -8,6 +8,8 @@
 ;; Setup C/C++
 
 
+(setenv "GIT_ASKPASS" "git-gui--askpass")
+
 
 
 (setq display-time-day-and-date t
@@ -254,16 +256,8 @@
  python-shell-interpreter-args
  "-i C:\\Anaconda\\Scripts\\ipython-script.py console --pylab=qt")
 
-;; (add-to-list 'load-path "C:\\Users\\Abdullah\\AppData\\Roaming\\.emacs.d\\elpa\\python-mode-20150117.955\\")
-;; (autoload 'python-mode "python-mode" "Python Mode." t)
-;; (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-;; (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
-
-;; (add-to-list 'default-frame-alist '(font . "Consolas" ))
-;; (set-face-attribute 'default t :font "Consolas" )
 
 (set-default-font "Consolas-12")
 
