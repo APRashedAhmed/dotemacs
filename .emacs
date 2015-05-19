@@ -1,4 +1,5 @@
 ;;;; Emacs Config File
+(package-initialize)
 
 ;; To Do List:
 ;; yasnippet - template system that allows to type an abbreviation and get a function template
@@ -8,7 +9,12 @@
 ;; magit
 ;; emacs internet browser
 ;; learn org mode
-;; try to get rid of sublimity (slows startup)
+;; try to get rid of sublimity
+
+
+;; Automatically adds an ending pair to a parenthesis
+(require 'flex-autopair)
+(flex-autopair-mode 1)
 
 ;; Prevent annoying \"Active processes exist\" query when you quit Emacs.
 (add-hook 'shell-mode-hook
@@ -23,6 +29,7 @@
 (setenv "GIT_ASKPASS" "git-gui--askpass")
 
 
+;; Displays the date and 12 hr time in powerline
 (setq display-time-day-and-date t
                 display-time-12hr-format t)
              (display-time)
@@ -55,7 +62,6 @@
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
-(package-initialize)
 
 
 3(custom-set-faces
