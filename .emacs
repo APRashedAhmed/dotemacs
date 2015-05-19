@@ -1,6 +1,9 @@
 ;;;; Emacs Config File
 (package-initialize)
 
+;loads the .emacs file on startup
+(find-file "C:\\Users\\Abdullah\\AppData\\Roaming\\.emacs")
+
 ;; To Do List:
 ;; yasnippet - template system that allows to type an abbreviation and get a function template
 ;; jedi - python auto completion that doesnt seem to be initialized here but is installed
@@ -11,6 +14,25 @@
 ;; learn org mode
 ;; try to get rid of sublimity
 
+;; Started working on yasnippet
+
+;; Load yasnippet
+(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;; Code below is meant to make auto-complete play nice with yasnippet
+;;; auto complete mod
+;;; should be loaded after yasnippet so that they can work together
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+
+;;; set the trigger key so that it can work together with yasnippet on tab key,
+;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
+;;; activate, otherwise, auto-complete will
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
 
 ;; Automatically adds an ending pair to a parenthesis
 (require 'flex-autopair)
@@ -22,6 +44,10 @@
             (set-process-query-on-exit-flag (get-buffer-process
                                              (current-buffer))
                                             nil)))
+;; Makes Indentation nicer in C
+(setq c-default-style "linux"
+      c-basic-offset 4)
+
 
 ;; Required to get git to accept https
 ;; Add git bin to load path
@@ -80,9 +106,6 @@
 :background "DarkOrange2"
 :box nil)
 
-
-;loads the .emacs file on startup
-(find-file "C:\\Users\\Abdullah\\AppData\\Roaming\\.emacs")
 
 ; switch to the interpreter after executing code
 (setq py-shell-switch-buffers-on-execute-p t)
