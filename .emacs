@@ -13,6 +13,15 @@
 ;; emacs internet browser
 ;; learn org mode
 ;; try to get rid of sublimity
+;; Fully configure markdown/gfm
+
+;; Markdown-Mode
+(add-to-list 'load-path "~/.emacs.d/elpa/markdown-mode-20150603.1303/markdown-mode.el")
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; Started working on yasnippet
 
