@@ -1,10 +1,12 @@
 ;;;; Emacs Config File
 (package-initialize)
-
-;loads the .emacs file on startup
+;;loads the .emacs file on startup
 (find-file "C:\\Users\\Abdullah\\AppData\\Roaming\\.emacs")
 
+;; ----------------------------------------------------------------
+
 ;; To Do List:
+
 ;; yasnippet - template system that allows to type an abbreviation and get a function template
 ;; jedi - python auto completion that doesnt seem to be initialized here but is installed
 ;; elpy - requires flake8 and importmagic, neither of which are installed. Check this
@@ -14,6 +16,8 @@
 ;; learn org mode
 ;; try to get rid of sublimity
 ;; Fully configure markdown/gfm
+
+;; ----------------------------------------------------------------
 
 ;; Function that creates a new shell, prompting the user for a shell name
 (defun create-shell ()
