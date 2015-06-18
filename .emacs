@@ -15,7 +15,7 @@
 ;; try to get rid of sublimity
 ;; Fully configure markdown/gfm
 
-;; Allows for multiple shells by prompting the user for a shell name
+;; Function that creates a new shell, prompting the user for a shell name
 (defun create-shell ()
     "creates a shell with a given name"
     (interactive);; "Prompt\n shell name:")
