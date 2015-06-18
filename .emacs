@@ -1,25 +1,42 @@
 ;;;; Emacs Config File
 (package-initialize)
-;;loads the .emacs file on startup
+;; loads the .emacs file on startup
 (find-file "C:\\Users\\Abdullah\\AppData\\Roaming\\.emacs")
+
+;; Load load visual packages before the rest of them 
+(load-theme 'monokai t)			; Loads Emacs Monokai Theme
+(require 'powerline)			; Loads PowerLine
+(powerline-default-theme)
+(set-face-attribute 'mode-line nil
+		    :foreground "Black"
+		    :background "DarkOrange2"
+		    :box nil)
+
+;; ----------------------------------------------------------------
 
 ;; ----------------------------------------------------------------
 
 ;; To Do List:
 
-;; yasnippet - template system that allows to type an abbreviation and get a function template
-;; jedi - python auto completion that doesnt seem to be initialized here but is installed
-;; elpy - requires flake8 and importmagic, neither of which are installed. Check this
-;; Setup C/C++
-;; magit
-;; emacs internet browser
-;; learn org mode
-;; try to get rid of sublimity
-;; Fully configure markdown/gfm
+;; - yasnippet - template system that allows to type an abbreviation
+;; and get a function template
+;; - jedi - python auto completion that doesnt seem to be
+;; initialized here but is installed
+;; - elpy - requires flake8 and importmagic, neither of which are
+;; installed. Check this
+;; - Setup C/C++
+;; - magit
+;; - emacs internet browser
+;; - learn org mode
+;; - try to get rid of sublimity
+;; - Fully configure markdown/gfm
 
 ;; ----------------------------------------------------------------
 
-;; Function that creates a new shell, prompting the user for a shell name
+;; ----------------------------------------------------------------
+
+;; Function that creates a new shell, prompting the user for a
+;; shell name
 (defun create-shell ()
     "creates a shell with a given name"
     (interactive);; "Prompt\n shell name:")
@@ -65,15 +82,18 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
-;; Code below is meant to make auto-complete play nice with yasnippet
+;; Code below is meant to make auto-complete play nice with
+;; yasnippet
 ;;; auto complete mod
 ;;; should be loaded after yasnippet so that they can work together
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
-;;; set the trigger key so that it can work together with yasnippet on tab key,
-;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
+;;; set the trigger key so that it can work together with yasnippet
+;; on tab key,
+;;; if the word exists in yasnippet, pressing tab will cause
+;; yasnippet to
 ;;; activate, otherwise, auto-complete will
 (ac-set-trigger-key "TAB")
 (ac-set-trigger-key "<tab>")
@@ -82,7 +102,8 @@
 (require 'flex-autopair)
 (flex-autopair-mode 1)
 
-;; Prevent annoying \"Active processes exist\" query when you quit Emacs.
+;; Prevent annoying \"Active processes exist\" query when you quit
+;; Emacs - Does not Work!
 (add-hook 'shell-mode-hook
           (lambda ()
             (set-process-query-on-exit-flag (get-buffer-process
@@ -132,23 +153,12 @@
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
-
-
-3(custom-set-faces
+(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(font-lock-preprocessor-face ((t (:foreground "blue")))))
-
-(load-theme 'monokai t)
-
-(require 'powerline)
-(powerline-default-theme)
-(set-face-attribute 'mode-line nil
-:foreground "Black"
-:background "DarkOrange2"
-:box nil)
 
 
 ; switch to the interpreter after executing code
@@ -172,8 +182,9 @@
 ;; smex code
 
 (require 'smex) ; Not needed if you use package.el
-(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                  ; when Smex is auto-initialized on its first run.
+(smex-initialize) ; Can be omitted. This might cause a (minimal)
+		  ; delay when Smex is auto-initialized on its first
+		  ; run 
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
