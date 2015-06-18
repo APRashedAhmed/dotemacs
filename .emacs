@@ -15,10 +15,16 @@
 ;; try to get rid of sublimity
 ;; Fully configure markdown/gfm
 
+;; Allows for multiple shells by prompting the user for a shell name
+(defun create-shell ()
+    "creates a shell with a given name"
+    (interactive);; "Prompt\n shell name:")
+    (let ((shell-name (read-string "shell name: " nil)))
+    (shell (concat "*" shell-name "*"))))
+
 ;; Sets your shell to use cygwin's bash, if Emacs finds it's running
 ;; under Windows and c:\cygwin exists. Assumes that C:\cygwin\bin is
 ;; not already in your Windows Path (it generally should not be).
-;;
 (let* ((cygwin-root "c:/cygwin64")
        (cygwin-bin (concat cygwin-root "/bin")))
   (when (and (eq 'windows-nt system-type)
