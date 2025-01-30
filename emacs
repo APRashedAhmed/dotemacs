@@ -1,5 +1,5 @@
 ; -*- mode: Emacs-Lisp;-*-
-;; Abdullah's XPS 13 Emacs File
+;; Abdullah's Emacs File
 
 ;; Notes:
 ;; When making changes to the .emacs file, you can evaluate distinct pieces of
@@ -21,11 +21,11 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(global-linum-mode 1)                   ; Displays Line numbers
+(global-display-line-numbers-mode t)    ; Displays Line numbers
 (defalias 'yes-or-no-p 'y-or-n-p)       ; Shortens yes no to y n
 (menu-bar-mode -1)                      ; No menu bar
 (tool-bar-mode -1)                      ; No tool bar
-(scroll-bar-mode -1)                 ; No scroll bar
+(scroll-bar-mode -1)                    ; No scroll bar
 (define-key global-map (kbd "RET") 'newline-and-indent) ; Auto-indent on enter
 (setq line-number-mode t)
 (setq inhibit-startup-message t         ; Get rid of welcome screen
@@ -44,6 +44,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 ;; -------------------------------------------------------------------------- ;;
 ;;                                 Packages                                   ;;
 ;; -------------------------------------------------------------------------- ;;
@@ -99,7 +100,7 @@
 (global-fci-mode t)
 (setq fci-rule-color "#465457")
 (setq fci-rule-column 80) ; Sets the fill column to appear at 80
-(set-default-font "Consolas-10")
+;; (set-default-font "Consolas-10")
 (add-to-list 'default-frame-alist '(fullscreen . fullscreen)) ;Maximize on startup
 
 ;; ;; Set tabs to be 4 spaces long
@@ -125,3 +126,82 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 (add-hook 'prog-mode-hook 'subword-mode)
+
+;; Markdown mode changes
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
+
+
+(defun markdown-html (buffer)
+  "Render the buffer as html for impatient-mode."
+  (princ (with-current-buffer buffer
+	   (format "<!DOCTYPE html>
+<html>
+<title>Impatient Markdown</title>
+<xmp theme=\"united\" style=\"display:none;\"> %s  </xmp>
+<script src=\"http://ndossougbe.github.io/strapdown/dist/strapdown.js\"></script>
+</html>"
+		   (buffer-substring-no-properties (point-min) (point-max))))
+	 (current-buffer)))
+
+(defun preview-md ()
+  "Start an HTTP server and preview the current Markdown buffer in impatient-mode."
+  (interactive)
+  (require 'impatient-mode)
+  (require 'simple-httpd)
+
+  ;; Ensure httpd is started on an available port
+  (unless (httpd-running-p)
+    (let ((port 8080))
+      (while (condition-case nil
+                 (progn
+                   (setq httpd-port port)
+                   (httpd-start)
+                   nil)  ;; Stop looping if successful
+               (error (setq port (1+ port)) t)))  ;; Try next port if error
+      (message "HTTP server started on port %d." httpd-port)))
+
+  ;; Enable impatient-mode for the current buffer
+  (impatient-mode 1)
+
+  ;; Set the Markdown rendering function for impatient-mode
+  (setq imp-user-filter #'markdown-html)  
+
+  ;; Force impatient-mode to refresh its state and notify connected clients
+  (cl-incf imp-last-state)
+  (imp--notify-clients)
+    
+  ;; Open the browser automatically with a direct link to this buffer
+  (browse-url (format "http://localhost:%d/imp/live/%s" httpd-port (url-hexify-string (buffer-name)))))
+
+(defun preview-md-end ()
+  "Stop the HTTP server and disable impatient-mode in the current buffer."
+  (interactive)
+  (require 'impatient-mode)
+  (require 'simple-httpd)
+
+  ;; Disable impatient-mode in the current buffer
+  (when (bound-and-true-p impatient-mode)
+    (impatient-mode -1)
+    (message "impatient-mode disabled in the current buffer."))
+
+  ;; Stop the HTTP server if it's running
+  (when (httpd-running-p)
+    (httpd-stop)
+    (message "HTTP server stopped.")))
+
+(defun preview-md-reset ()
+  "Stop the current Markdown preview and restart it for the current buffer."
+  (interactive)
+  (preview-md-end)
+  (preview-md))
+
+(defun preview-md-list ()
+  "Open the impatient-mode listing page in the browser."
+  (interactive)
+  (require 'simple-httpd)
+  (if (httpd-running-p)
+      (browse-url (format "http://localhost:%d/imp/" httpd-port))
+    (message "HTTP server is not running.")))

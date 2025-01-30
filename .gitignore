@@ -46,3 +46,6 @@ flycheck_*.el
 
 # ido.las
 emacs.d/ido.last
+
+# Cache directory
+emacs.d/eln-cache
