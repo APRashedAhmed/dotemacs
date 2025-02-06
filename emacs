@@ -72,6 +72,20 @@
  ;; If there is more than one, they won't work right.
  '(initial-frame-alist (quote ((fullscreen . fullscreen)))))
 
+;; Insert 'import ipdb; ipdb.set_trace()' at the cursor position.
+(defun insert-ipdb-set-trace ()
+  (interactive)
+  (insert "import ipdb; ipdb.set_trace()"))
+
+(global-set-key (kbd "C-c p") 'insert-ipdb-set-trace)
+
+;; Insert 'import IPython; IPython.start_ipython()' at the cursor position.
+(defun insert-ipython-start ()
+  (interactive)
+  (insert "import IPython; IPython.start_ipython(argv=[], user_ns=globals().update(locals()))"))
+
+(global-set-key (kbd "C-c i") 'insert-ipython-start)
+
 (load-theme 'darkokai t)
 
 ;; Powerline
@@ -101,6 +115,7 @@
 (setq fci-rule-color "#465457")
 (setq fci-rule-column 80) ; Sets the fill column to appear at 80
 ;; (set-default-font "Consolas-10")
+(set-default-font "YaHei Consolas Hybrid-12")
 (add-to-list 'default-frame-alist '(fullscreen . fullscreen)) ;Maximize on startup
 
 ;; ;; Set tabs to be 4 spaces long
@@ -118,7 +133,10 @@
  ;;            (setq indent-tabs-mode t)
  ;;            (setq python-indent 4)
  ;;            (setq tab-width 4))
- ;;          (tabify (point-min) (point-max)))
+;;          (tabify (point-min) (point-max)))
+
+;; JS Tab
+(setq js-indent-level 2)
 
 ;; Show parenthesis
 (require 'paren)
