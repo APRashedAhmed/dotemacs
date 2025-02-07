@@ -56,21 +56,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-	("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+   '("fc1275617f9c8d1c8351df9667d750a8e3da2658077cfdda2ca281a2ebc914e0" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
  '(package-archives
-   (quote
-	(("gnu" . "http://elpa.gnu.org/packages/")
-	 ("melpa" . "http://melpa.org/packages/"))))
+   '(("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "http://melpa.org/packages/")))
  '(package-selected-packages
-   (quote
-	(smart-mode-line-powerline-theme markdown-mode+ markdown-mode dockerfile-mode yaml-mode ess ido-vertical-mode fill-column-indicator darkokai-theme))))
+   '(smart-mode-line-powerline-theme markdown-mode+ markdown-mode dockerfile-mode yaml-mode ess ido-vertical-mode fill-column-indicator darkokai-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(initial-frame-alist (quote ((fullscreen . fullscreen)))))
+ '(initial-frame-alist '((fullscreen . fullscreen))))
 
 ;; Insert 'import ipdb; ipdb.set_trace()' at the cursor position.
 (defun insert-ipdb-set-trace ()
